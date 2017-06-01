@@ -1,7 +1,7 @@
 <?php include_once "inc/header.php"; ?>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2>User List <span class="pull-right"><strong>Welcome !</strong> Sayem</span></h2>
+            <h2>User Registration</h2>
         </div>
         <div class="container">
             <form action="" method="POST">
