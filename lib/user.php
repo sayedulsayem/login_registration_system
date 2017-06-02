@@ -98,6 +98,20 @@ class user {
         }
 
         $result= $this->getLoginUser($email,$password);
+        if ($result){
+            session::init();
+            session::set("login",true);
+            session::set("id",$result->id);
+            session::set("full_name",$result->full_name);
+            session::set("user_name",$result->user_name);
+            session::set("email",$result->email);
+            session::set("loginmsg","<div class='alert alert-success'><strong>Success !</strong> You are loggedIn</div>");
+            //header("location:index.php");
+        }
+        else{
+            $msg="<div class='alert alert-danger'><strong>Error !</strong> Email and password doesn't match</div>";
+            return $msg;
+        }
     }
 }
 

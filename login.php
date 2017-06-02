@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['register'])){
             <div class="checkbox">
                 <label><input type="checkbox" name="remember"> Remember me</label>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" name="login" class="btn btn-default">Submit</button>
         </form>
     </div>
     </div>
