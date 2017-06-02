@@ -5,7 +5,7 @@ class database {
     private $userdb="root";
     private $passdb="";
     private $namedb="login_registration";
-    private $pdo;
+    public $pdo;
     public function __construct()
     {
         if(!isset($this->pdo)){
