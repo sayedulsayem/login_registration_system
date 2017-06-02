@@ -5,7 +5,7 @@ include_once "lib/user.php";
 <?php
 $user = new user();
 if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['register'])){
-    $userreg= $user->user_registration($_POST);
+    $userReg= $user->userRegistration($_POST);
 }
 ?>
     <div class="panel panel-default">
@@ -14,14 +14,14 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['register'])){
         </div>
         <div class="container">
             <?php
-            if (isset($userreg)){
-                echo $userreg;
+            if (isset($userReg)){
+                echo $userReg;
             }
             ?>
             <form action="" method="POST">
                 <div class="form-group">
-                    <label for="name">Full Name:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter full name" name="name">
+                    <label for="full_name">Full Name:</label>
+                    <input type="text" class="form-control" id="full_name" placeholder="Enter full name" name="full_name">
                 </div>
                 <div class="form-group">
                     <label for="user_name">User Name:</label>
