@@ -32,8 +32,8 @@ class user {
             $msg="<div class='alert alert-danger'><strong>Error !</strong> Enter a valid email address</div>";
             return $msg;
         }
-        if ($chk_email==true){
-            $msg="<div class='alert alert-danger'><strong>Error !</strong> this email address is already exist</div>";
+        if ($chk_email==false){
+            $msg="<div class='alert alert-danger'><strong>Error !</strong> user not found </div>";
             return $msg;
         }
         $sql="INSERT INTO user (full_name, user_name, email, password)
@@ -77,7 +77,7 @@ class user {
         return $result;
     }
 
-    public function user_login($data){
+    public function userLogin($data){
         $email=$data['email'];
         $pass=$data['password'];
         $password=md5($pass);
@@ -106,7 +106,7 @@ class user {
             session::set("user_name",$result->user_name);
             session::set("email",$result->email);
             session::set("loginmsg","<div class='alert alert-success'><strong>Success !</strong> You are loggedIn</div>");
-            //header("location:index.php");
+            header("location:index.php");
         }
         else{
             $msg="<div class='alert alert-danger'><strong>Error !</strong> Email and password doesn't match</div>";

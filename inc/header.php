@@ -1,3 +1,9 @@
+<?php
+$filepath= realpath(dirname(__FILE__));
+include_once $filepath."/../lib/session.php";
+session::init();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

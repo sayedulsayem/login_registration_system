@@ -4,7 +4,7 @@ include_once "lib/user.php";
 ?>
 <?php
 $user = new user();
-if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['register'])){
+if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['login'])){
     $userLogin= $user->userLogin($_POST);
 }
 ?>

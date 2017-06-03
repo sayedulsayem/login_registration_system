@@ -3,10 +3,23 @@ include_once "inc/header.php";
 include_once "lib/user.php";
 $user = new user();
 ?>
+<?php
+/*$loginmsg= session::get("loginmsg");
+if (isset($loginmsg)){
+    echo $loginmsg;
+}*/
+?>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2>User List <span class="pull-right"><strong>Welcome !</strong> Sayem</span></h2>
+            <h2>User List <span class="pull-right"><strong>Welcome !</strong>
+                    <?php
+                    $name=session::get("full_name");
+                    if (isset($name)){
+                        echo $name;
+                    }
+                    ?>
+                </span></h2>
         </div>
     </div>
     <div class="container">
