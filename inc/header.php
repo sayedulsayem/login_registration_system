@@ -13,6 +13,11 @@ session::init();
     <script src="inc/js/bootstrap.min.js"></script>
     <script src="inc/js/jquery-3.2.1.min.js"></script>
 </head>
+<?php
+    if (isset($_GET['action'])&& $_GET['action']=="logout"){
+        session::destroy();
+    }
+?>
 <body>
 <div class="container">
     <nav class="navbar navbar-default">
@@ -22,7 +27,7 @@ session::init();
             </div>
             <ul class="nav navbar-nav pull-right">
                 <li><a href="profile.php">Profile</a></li>
-                <li><a href="">Log Out</a></li>
+                <li><a href="?action=logout">Log Out</a></li>
                 <li><a href="login.php">Login</a></li>
                 <li><a href="register.php">Register</a></li>
             </ul>

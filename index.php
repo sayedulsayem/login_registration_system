@@ -1,13 +1,15 @@
 <?php
 include_once "inc/header.php";
 include_once "lib/user.php";
+include_once "lib/database.php";
+include_once "lib/session.php";
 $user = new user();
 ?>
 <?php
-/*$loginmsg= session::get("loginmsg");
+$loginmsg= session::get("loginmsg");
 if (isset($loginmsg)){
     echo $loginmsg;
-}*/
+}
 ?>
 
     <div class="panel panel-default">
@@ -18,6 +20,7 @@ if (isset($loginmsg)){
                     if (isset($name)){
                         echo $name;
                     }
+                    var_dump($name) ;
                     ?>
                 </span></h2>
         </div>

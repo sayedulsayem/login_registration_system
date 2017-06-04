@@ -7,8 +7,10 @@ class session {
             if (session_id()==""){
                 session_start();
             }
-            elseif (session_status()== PHP_SESSION_NONE){
-                session_start();
+            else{
+                if (session_status()== PHP_SESSION_NONE){
+                    session_start();
+                }
             }
         }
     }
@@ -20,8 +22,13 @@ class session {
             return $_SESSION[$key];
         }
         else{
-            return false;
+            return $_SESSION[$key];
         }
+    }
+    public static function destroy(){
+        session_destroy();
+        session_unset();
+        header("Location: login.php");
     }
 }
 
