@@ -1,8 +1,6 @@
 <?php
 include_once "inc/header.php";
 include_once "lib/user.php";
-include_once "lib/database.php";
-include_once "lib/session.php";
 $user = new user();
 ?>
 <?php

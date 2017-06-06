@@ -22,7 +22,7 @@ class session {
             return $_SESSION[$key];
         }
         else{
-            return $_SESSION[$key];
+            return false;
         }
     }
     public static function destroy(){
