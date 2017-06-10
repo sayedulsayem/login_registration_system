@@ -8,17 +8,19 @@ $loginmsg= session::get("loginmsg");
 if (isset($loginmsg)){
     echo $loginmsg;
 }
+session::set("loginmsg","");
 ?>
 
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2>User List <span class="pull-right"><strong>Welcome !</strong>
                     <?php
+
                     $name=session::get("full_name");
                     if (isset($name)){
                         echo $name;
                     }
-                    var_dump($name) ;
+
                     ?>
                 </span></h2>
         </div>

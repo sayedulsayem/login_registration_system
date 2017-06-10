@@ -78,6 +78,8 @@ class user {
     }
 
     public function userLogin($data){
+        
+ 
         $email=$data['email'];
         $pass=$data['password'];
         $password=md5($pass);
@@ -99,7 +101,7 @@ class user {
 
         $result= $this->getLoginUser($email,$password);
         if ($result){
-            session::init();
+            //session::init();
             session::set("login",true);
             session::set("id",$result->id);
             session::set("full_name",$result->full_name);
