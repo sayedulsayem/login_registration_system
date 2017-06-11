@@ -1,4 +1,7 @@
-<?php include_once "inc/header.php"; ?>
+<?php
+include_once "inc/header.php";
+session::checkSession();
+?>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2>User Profile <span class="pull-right"><strong>Welcome !</strong> Sayem</span></h2>

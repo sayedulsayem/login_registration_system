@@ -33,6 +33,17 @@ class session {
         session_unset();
         header("Location: login.php");
     }
+    public static function checkSession(){
+        if(self::get('login')== false){
+            self::destroy();
+            header('Location: login.php');
+        }
+    }
+    public static function checkLogin(){
+        if(self::get('login')== true){
+            header('Location: index.php');
+        }
+    }
 }
 
 ?>

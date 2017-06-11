@@ -26,10 +26,22 @@ session::init();
                 <a class="navbar-brand" href="index.php">Login Register System</a>
             </div>
             <ul class="nav navbar-nav pull-right">
-                <li><a href="profile.php">Profile</a></li>
-                <li><a href="?action=logout">Log Out</a></li>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="register.php">Register</a></li>
+                <?php
+                $id=session::get('id');
+                $userLogin=session::get('login');
+                if ($userLogin== true){ ?>
+                    <li><a href="profile.php?id=<?php echo $id; ?>">Profile</a></li>
+                    <li><a href="?action=logout">Log Out</a></li>
+                <?php
+                }
+                else {
+                    ?>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="register.php">Register</a></li>
+                <?php
+                }
+                ?>
+
             </ul>
         </div>
     </nav>
