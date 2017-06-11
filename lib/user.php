@@ -7,6 +7,18 @@ class user {
     {
         $this->db=new database();
     }
+    public function emailCheck($email){
+        $sql= "SELECT email FROM `user` WHERE email = :email";
+        $query=$this->db->pdo->prepare($sql);
+        $query->bindValue(':email',$email);
+        $query->execute();
+        if($query->rowCount()>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     public function userRegistration($data){
         $full_name=$data['full_name'];
         $user_name=$data['user_name'];
@@ -32,8 +44,8 @@ class user {
             $msg="<div class='alert alert-danger'><strong>Error !</strong> Enter a valid email address</div>";
             return $msg;
         }
-        if ($chk_email==false){
-            $msg="<div class='alert alert-danger'><strong>Error !</strong> user not found </div>";
+        if ($chk_email==true){
+            $msg="<div class='alert alert-danger'><strong>Error !</strong> this user email already registered </div>";
             return $msg;
         }
         $sql="INSERT INTO user (full_name, user_name, email, password)
@@ -53,18 +65,6 @@ class user {
             return $msg;
         }
 
-    }
-    public function emailCheck($email){
-        $sql= "SELECT email FROM `user` WHERE email = :email";
-        $query=$this->db->pdo->prepare($sql);
-        $query->bindValue(':email',$email);
-        $query->execute();
-        if($query->rowCount()>0){
-            return true;
-        }
-        else{
-            return false;
-        }
     }
 
     public function getLoginUser($email,$password){
