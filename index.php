@@ -15,12 +15,10 @@ session::set("loginmsg","");
         <div class="panel-heading">
             <h2>User List <span class="pull-right"><strong>Welcome !</strong>
                     <?php
-
                     $name=session::get("full_name");
                     if (isset($name)){
                         echo $name;
                     }
-
                     ?>
                 </span></h2>
         </div>
