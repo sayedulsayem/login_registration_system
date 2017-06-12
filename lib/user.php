@@ -130,6 +130,41 @@ class user {
         $result=$query->fetch(PDO::FETCH_OBJ);
         return $result;
     }
+    public function updateUserData($data){
+        $id=$data['id'];
+        $full_name=$data['full_name'];
+        $user_name=$data['user_name'];
+        $email=$data['email'];
+        if($full_name=="" OR $user_name=="" OR $email==""){
+            $msg="<div class='alert alert-danger'><strong>Error !</strong> Field must not be empty</div>";
+            return $msg;
+        }
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)=== false){
+            $msg="<div class='alert alert-danger'><strong>Error !</strong> Enter a valid email address</div>";
+            return $msg;
+        }
+
+        $sql="UPDATE  user set
+                full_name= :full_name,
+                user_name= :user_name,
+                email = :email
+                WHERE id= :id";
+
+        $query=$this->db->pdo->prepare($sql);
+        $query->bindValue(':full_name',$full_name);
+        $query->bindValue(':user_name',$user_name);
+        $query->bindValue(':email',$email);
+        $query->bindValue(':id',$id);
+        $result=$query->execute();
+        if ($result){
+            $msg="<div class='alert alert-success'><strong>Success !</strong> your data has been updated </div>";
+            return $msg;
+        }else{
+            $msg="<div class='alert alert-danger'><strong>Error !</strong>
+             sorry ! there is a problem to update your data. try again later</div>";
+            return $msg;
+        }
+    }
 }
 
 ?>

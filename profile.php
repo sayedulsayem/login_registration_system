@@ -10,7 +10,7 @@ if(isset($_GET['id'])){
 ?>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2>User Profile <span class="pull-right"><strong>Welcome !</strong> Sayem</span></h2>
+            <h2> User Profile <span class="pull-right"><strong> Welcome !</strong> Sayem </span></h2>
         </div>
         <div class="container">
             <?php
@@ -19,6 +19,9 @@ if(isset($_GET['id'])){
             if ($userData){
             ?>
             <form action="tools/update.php" method="POST">
+                <div class="form-group">
+                    <input name="id" value="<?php echo $userData->id; ?>" type="hidden" class="form-control" id="id">
+                </div>
                 <div class="form-group">
                     <label for="full_name">Full Name:</label>
                     <input name="full_name" value="<?php echo $userData->full_name; ?>" type="text" class="form-control" id="full_name">
@@ -37,7 +40,7 @@ if(isset($_GET['id'])){
                 <?php
                 $sesID=session::get('id');
                 if ($userId == $sesID){ ?>
-                    <button name="update" type="submit" class="btn btn-default">Update</button>
+                    <button name="update" type="submit" class="btn btn-default"> Update </button>
                <?php }
                 ?>
 
