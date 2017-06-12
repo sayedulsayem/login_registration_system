@@ -1,30 +1,48 @@
 <?php
+include_once "lib/user.php";
 include_once "inc/header.php";
 session::checkSession();
+?>
+<?php
+if(isset($_GET['id'])){
+    $userId=(int)($_GET['id']);
+}
 ?>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2>User Profile <span class="pull-right"><strong>Welcome !</strong> Sayem</span></h2>
         </div>
         <div class="container">
-            <form action="" method="POST">
+            <?php
+            $user=new user();
+            $userData=$user->getUserDataById($userId);
+            if ($userData){
+            ?>
+            <form action="tools/update.php" method="POST">
                 <div class="form-group">
-                    <label for="name">Full Name:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter full name" name="name">
+                    <label for="full_name">Full Name:</label>
+                    <input name="full_name" value="<?php echo $userData->full_name; ?>" type="text" class="form-control" id="full_name">
+                </div>
+                <div class="form-group">
+                    <label for="user_name">User Name:</label>
+                    <input name="user_name" value="<?php echo $userData->user_name; ?>" type="text" class="form-control" id="user_name">
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                </div>
-                <div class="form-group">
-                    <label for="pwd">Passord :</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                    <input name="email" value="<?php echo $userData->email; ?>" type="email" class="form-control" id="email">
                 </div>
                 <div class="checkbox">
                     <label><input type="checkbox" name="remember"> Remember me</label>
                 </div>
-                <button name="update" type="submit" class="btn btn-default">Update</button>
+                <?php
+                $sesID=session::get('id');
+                if ($userId == $sesID){ ?>
+                    <button name="update" type="submit" class="btn btn-default">Update</button>
+               <?php }
+                ?>
+
             </form>
+            <?php } ?>
         </div>
     </div>
 <?php

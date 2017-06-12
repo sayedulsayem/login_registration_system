@@ -2,7 +2,6 @@
 include_once "inc/header.php";
 include_once "lib/user.php";
 session::checkSession();
-$user = new user();
 ?>
 <?php
 $loginmsg= session::get("loginmsg");
@@ -29,6 +28,7 @@ session::set("loginmsg","");
             <thead>
             <tr>
                 <th>Seriel</th>
+                <th>User ID</th>
                 <th>Full Name</th>
                 <th>User Name</th>
                 <th>Email</th>
@@ -36,27 +36,31 @@ session::set("loginmsg","");
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-                <td><a class="btn btn-primary" href="profile.php?id=1">View</a></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-                <td><a class="btn btn-primary" href="profile.php?id=1">View</a></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-                <td><a class="btn btn-primary" href="profile.php?id=1">View</a></td>
-            </tr>
+            <?php
+            $user = new user();
+            $userData=$user->getUserData();
+            if ($userData){
+                $i=0;
+                foreach ($userData as $sData){
+                    $i++;
+                    ?>
+                    <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $sData['id']; ?></td>
+                        <td><?php echo $sData['full_name']; ?></td>
+                        <td><?php echo $sData['user_name']; ?></td>
+                        <td><?php echo $sData['email']; ?></td>
+                        <td><a class="btn btn-primary" href="profile.php?id=<?php echo $sData['id']; ?>">View</a></td>
+                    </tr>
+                    <?php
+                }
+            }else{
+                ?>
+                <tr><td colspan="5"><h1>No User Data Found.........</h1></td></tr>
+                <?php
+            }
+            ?>
+
             </tbody>
         </table>
     </div>
