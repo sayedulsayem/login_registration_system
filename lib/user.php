@@ -165,6 +165,33 @@ class user {
             return $msg;
         }
     }
+
+    public function checkPassword($id,$old_pass){
+        $sql="SELECT * FROM user WHERE id= :id";
+        $query=$this->db->pdo->prepare($sql);
+        $query->bindParam(':id',$id);
+        $result=$query->fetch(PDO::FETCH_OBJ);
+        $o_pass=$result->password;
+        if($o_pass==$old_pass){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function updatepassword($id,$data){
+        $o_pass=$data['old_pass'];
+        $old_pass=md5($o_pass);
+        $n_pass=$data['new_pass'];
+        $new_pass=md5($n_pass);
+        if ($o_pass== "" OR $n_pass== ""){
+            $msg="<div class='alert alert-danger'><strong>Error !</strong>
+             Field must not be empty</div>";
+            return $msg;
+        }
+        $chk_pass= $this->checkPassword($id,$old_pass);
+    }
 }
 
 ?>

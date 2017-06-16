@@ -41,6 +41,7 @@ if(isset($_GET['id'])){
                 $sesID=session::get('id');
                 if ($userId == $sesID){ ?>
                     <button name="update" type="submit" class="btn btn-default"> Update </button>
+                    <a class="btn btn-default" href="tools/changePassword.php?id=<?php echo $userId; ?>">Change password</a>
                <?php }
                 ?>
 
