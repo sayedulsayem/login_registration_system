@@ -30,6 +30,7 @@ session::init();
                 $id=session::get('id');
                 $userLogin=session::get('login');
                 if ($userLogin== true){ ?>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="profile.php?id=<?php echo $id; ?>">Profile</a></li>
                     <li><a href="?action=logout">Log Out</a></li>
                 <?php
