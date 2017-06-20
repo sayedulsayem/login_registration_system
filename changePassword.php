@@ -1,11 +1,15 @@
 <?php
-include_once "../lib/user.php";
-include_once "../inc/header.php";
+include_once "lib/user.php";
+include_once "inc/header.php";
 session::checkSession();
 ?>
 <?php
 if(isset($_GET['id'])){
     $userId=(int)($_GET['id']);
+    $sesID=session::get('id');
+    if ($userId != $sesID){
+        header("Location: index.php");
+    }
 }
 ?>
     <div class="panel panel-default">
@@ -36,5 +40,5 @@ if(isset($_GET['id'])){
         </div>
     </div>
 <?php
-include_once "../inc/footer.php";
+include_once "inc/footer.php";
 ?>

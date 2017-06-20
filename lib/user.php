@@ -170,6 +170,7 @@ class user {
         $sql="SELECT * FROM user WHERE id= :id";
         $query=$this->db->pdo->prepare($sql);
         $query->bindParam(':id',$id);
+        $query->execute();
         $result=$query->fetch(PDO::FETCH_OBJ);
         $o_pass=$result->password;
         if($o_pass==$old_pass){
@@ -185,12 +186,46 @@ class user {
         $old_pass=md5($o_pass);
         $n_pass=$data['new_pass'];
         $new_pass=md5($n_pass);
+
+        $chk_pass= $this->checkPassword($id,$old_pass);
+
         if ($o_pass== "" OR $n_pass== ""){
             $msg="<div class='alert alert-danger'><strong>Error !</strong>
              Field must not be empty</div>";
             return $msg;
         }
-        $chk_pass= $this->checkPassword($id,$old_pass);
+
+        if($chk_pass==false){
+            $msg="<div class='alert alert-danger'><strong>Error !</strong>
+             Password doesn't match</div>";
+            return $msg;
+        }
+
+        if(strlen($n_pass) < 6){
+            $msg="<div class='alert alert-danger'><strong>Error !</strong> Password must be at least 6 Characters</div>";
+            return $msg;
+        }
+        elseif (preg_match('/[^a-z0-9_-]+/i', $n_pass)){
+            $msg="<div class='alert alert-danger'><strong>Error !</strong> Characters must be a-z,0-9,_,-</div>";
+            return $msg;
+        }
+
+        $sql="UPDATE  user set
+                password= :password
+                WHERE id= :id";
+
+        $query=$this->db->pdo->prepare($sql);
+        $query->bindValue(':password',$new_pass);
+        $query->bindValue(':id',$id);
+        $result=$query->execute();
+        if ($result){
+            $msg="<div class='alert alert-success'><strong>Success !</strong> your password has been changed </div>";
+            return $msg;
+        }else{
+            $msg="<div class='alert alert-danger'><strong>Error !</strong>
+             sorry ! there is a problem to update your data. try again later</div>";
+            return $msg;
+        }
     }
 }
 
