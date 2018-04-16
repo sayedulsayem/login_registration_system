@@ -6,16 +6,16 @@ session::checkSession();
 <?php
 if(isset($_GET['id'])){
     $userId=(int)($_GET['id']);
+    $user=new user();
+    $userData=$user->getUserDataById($userId);
 }
 ?>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2> User Profile <span class="pull-right"><strong> Welcome !</strong> Sayem </span></h2>
+            <h2> User Profile <span class="pull-right"><strong> Welcome !</strong> <?php echo $userData->full_name; ?> </span></h2>
         </div>
         <div class="container">
             <?php
-            $user=new user();
-            $userData=$user->getUserDataById($userId);
             if ($userData){
             ?>
             <form action="tools/update.php" method="POST">

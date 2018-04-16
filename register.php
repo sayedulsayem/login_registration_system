@@ -16,7 +16,13 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['register'])){
         <div class="container">
             <?php
             if (isset($userReg)){
-                echo $userReg;
+                if ($userReg=="1") {
+                    echo "<div class='alert alert-success'><strong>Success !</strong> thank you, you have registerd</div>";
+                    header("location:index.php");
+                }
+                else{
+                    echo $userReg;
+                }
             }
             ?>
             <form action="" method="POST">

@@ -57,7 +57,7 @@ class user {
         $query->bindValue(':password',$password);
         $result=$query->execute();
         if ($result){
-            $msg="<div class='alert alert-success'><strong>Success !</strong> thank you, you have registerd</div>";
+            $msg="1";
             return $msg;
         }else{
             $msg="<div class='alert alert-danger'><strong>Error !</strong>
