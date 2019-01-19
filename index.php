@@ -11,6 +11,7 @@ if (isset($loginmsg)){
 session::set("loginmsg","");
 ?>
 
+<section class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2>User List <span class="pull-right"><strong>Welcome !</strong>
@@ -64,6 +65,7 @@ session::set("loginmsg","");
             </tbody>
         </table>
     </div>
+</section>
 
 <?php
 include_once "inc/footer.php";

@@ -42,7 +42,7 @@ session::init();
                 <?php
                 }
                 ?>
-
             </ul>
         </div>
     </nav>
+</div>
