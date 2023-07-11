@@ -11,7 +11,7 @@ session::init();
     <link rel="stylesheet" href="inc/css/bootstrap.min.css">
     <link rel="stylesheet" href="inc/css/bootstrap-theme.min.css">
     <script src="inc/js/bootstrap.min.js"></script>
-    <script src="inc/js/jquery-3.2.1.min.js"></script>
+    <script src="inc/js/jquery-3.5.0.min.js"></script>
 </head>
 <?php
     if (isset($_GET['action'])&& $_GET['action']=="logout"){
